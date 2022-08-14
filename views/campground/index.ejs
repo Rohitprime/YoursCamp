@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate.ejs') %> 
+<body>
+         <h1 class="text-center text-light">ALL THE CAMPS</h1>
+         <div class="text-center"><a href="/Campground/add" class="btn btn-success ">add new campground</a></div>
+            <div class="row">
+                <% for(let camp of camps){ %>
+                    <div class="card col-md-5 mx-md-4 col-xl-3 mx-xl-5 my-3  border text-light shadow-lg" style="background-color: #1A4341;">
+                        <img src="<%= camp.img[0].url%>" class="card-img-top" alt="error">
+                        <div class="card-body" >
+                          <h5 class="card-title"><%= camp.title%> </h5>
+                          <h5 class="card-title text-muted"><%= camp.location%> </h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="/Campground/<%= camp.id %> " class="btn btn-primary">more details</a>
+                        </div>
+                      </div>
+               <% } %> 
+            </div>
+    
+</body>

@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate.ejs') %> 
+<body>
+   <div class="row">
+      <h1 class="text-center text-uppercase font-italic text-light">update campground</h1>
+      <div class="col-6 offset-3 shadow-lg" style="background-color: #1A4341;">
+         <form action="/Campground/<%=camp.id%>?_method=put" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div>
+               <label for="title"class="text-muted">Title</label>
+               <input type="text" name="title" id="title" class="form-control" value="<%= camp.title%>" required>
+            </div>
+            <div class="my-1">
+   
+               <label for="location" class="text-muted" >location</label>
+               <input type="text" name="location" id="location" class="form-control" value="<%= camp.location%>" required>
+            </div>
+            <div class="my-1">
+               <label for="img" class="text-muted" >Images</label>
+               <input type="file" name="image" id="img" class="form-control"  multiple>
+            </div>
+            <div class="my-1">
+               <label for="price" class="text-muted">Price</label>
+               <div class="input-group mb-3">
+                  <span class="input-group-text">$</span>
+                  <input type="text" id="price" name="price" value="<%= camp.price %> " class="form-control" required>
+                  <span class="input-group-text">.00</span>
+                </div>
+            </div>
+            <div class="  ">
+            <% if(camp.img.length >= 0) {%> 
+               <% camp.img.forEach((image,i)=>{ %> 
+                  <div class="mt-2 col-7 card mx-auto shadow-lg ">
+                     <div class="m-1 border ">
+                       <img src="<%=image.url%>" alt="" width="300px" height="300px" class="card-img-top">
+                       <input type="checkbox" name="delete[]" id="<%=i%>" value=<%=image.fileName %> >
+                       <label for="<%=i%>" class="card-text">delete?</label>
+                    </div>
+                  </div>
+                  <% }) %> 
+                  <% } %> 
+               </div>
+            <div class="text-center">
+               <button class="btn btn-success my-3 px-4">submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</body>
