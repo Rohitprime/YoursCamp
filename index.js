@@ -3,6 +3,8 @@ if(process.env.NODE_ENV !== 'production')
     require('dotenv').config()
 }
 
+// || "mongodb://localhost:27017/yelp-camp"
+
 const dbUrl=process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
 
 const express = require('express');
@@ -107,19 +109,21 @@ app.get('/',(req,res)=>
  
 //    "mongodb://localhost:27017/yelp-camp"
   
-mongoose.connect(dbUrl)
-.then(() =>
-{
-    console.log('connected good to go');
+mongoose.connect(dbUrl,{
+    useNewUrlParser:true,
+    useCreateIndex:true,
+    useUnifiedTopology:true,
+    useFindAndModify:false
 })
-.catch((err) =>
-{
-    console.log('connection failed!!!!!');
-    console.log(err);
+
+const db = mongoose.connection;
+db.on("error",console.error.bind(console,"connection error"));
+db.once("open",()=>{
+    console.log("database connected");
 });
- 
-const port = process.env.PORT || 3000;
-app.listen(port ,()=>
+
+const port = process.env.PORT;
+app.listen(3000 ,()=>
 {
     console.log(`listing... on ${port}`);
 })
