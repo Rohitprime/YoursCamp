@@ -2,6 +2,7 @@ const { model } = require('mongoose');
 const { reviewschema } = require('../joiSchema');
 const Campground = require('../models/campground');
 const {cloudinary} = require('../cloudinary/index');
+const AppError = require('../utility/expressError');
 
 module.exports.allCampgrounds = async (req,res)=>
 {
@@ -14,12 +15,13 @@ module.exports.addCampground = (req,res)=>
     res.render('campground/addform.ejs');
 }
 module.exports.addedCampground = async (req,res,next)=>
-{
+{      
+      if(!req.body) throw new AppError('Invalid campground data',400);
         const campground = new Campground(req.body);
         campground.img = req.files.map(f => ({url:f.path,fileName:f.filename}));
         campground.author = req.user.id;
         campground.save();
-        req.flash('success','new campground is added');
+        req.flash('success','New campground is added');
         
         res.redirect(`/campground/${campground.id}`);  
 
@@ -40,7 +42,7 @@ module.exports.displayOne =async (req,res)=>
                     res.render('campground/showmore.ejs',{camp})
     } catch(err){
 
-        req.flash('danger','campground not found');
+        req.flash('danger','Campground not found :(');
         res.redirect('/Campground');
     }
 
@@ -73,6 +75,7 @@ module.exports.updeted = async (req,res)=>
         await camp.updateOne({$pull:{img:{fileName:{$in:req.body.delete}}}})
      }
      await camp.save();
+     req.flash('success','Successfully updated ')
     res.redirect(`/Campground/${id}`);
 }
 

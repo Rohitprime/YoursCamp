@@ -4,10 +4,15 @@ module.exports.isLoggedin = (req,res,next)=>
     if(!req.isAuthenticated())
      {
         req.session.backTo = req.originalUrl;
-        req.flash('danger','you must logged in');
-       return res.render('user/login-form');
+       console.log('backto', req.session.backTo ) ;
+        let obj ='You must login first';
+        let code = "danger"
+        res.render('user/login-form',{obj,code});
     }
-    next();
+    else{
+
+      next();
+    }
 }
 
 module.exports.isAuthor = async (req,res,next)=>

@@ -5,7 +5,7 @@ if(process.env.NODE_ENV !== 'production')
 
 // || "mongodb://localhost:27017/yelp-camp"
 
-const dbUrl=process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+const dbUrl=process.env.DB_URL||"mongodb://localhost:27017/yelp-camp";
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -22,6 +22,7 @@ const passportLocal = require('passport-local');
 const User = require('./models/user');
 const session = require('express-session');
 const MongoStore = require("connect-mongo");
+const { findOneAndUpdate } = require('./models/user');
 
 const app = express();
 app.engine('ejs',ejsMate);
@@ -35,7 +36,7 @@ app.use(express.urlencoded({extended:true}));
 //to fake the http request like put delete 
 app.use(methodOverride('_method'));
 
-const secret = process.env.CLOUDINARY_SECRET || 'rohitprime'
+const secret = process.env.SECRET || 'rohitprime'
 app.use(express.static(path.join(__dirname,'public')))
 
 const store = MongoStore.create({
@@ -53,14 +54,14 @@ const sessionOption = {
               store,
               secret,
               resave:false,
-              saveUninitialized:true,
+              saveUninitialized:false,
               cookie:{
                 httpOnly:true,
                 expires:Date.now()+1000*60*60*24*7
-              },
-              store:MongoStore.create({
-                mongoUrl: 'mongodb://localhost:27017/yelp-camp'
-              })
+              }
+            //   store:MongoStore.create({
+            //     mongoUrl:dbUrl
+            //   })
              
 
 }
@@ -99,11 +100,18 @@ app.get('/',(req,res)=>
     app.use('/Campground/:id/review',reviewroute); 
     app.use('/',userroute);
 
-//  ----> custom error hadler
+//  ----> custom error handler for wrong url
 
    app.get('*',(req,res,next)=>
    {
-       res.render('campground/error.ejs')
+       next(new AppError("Page Not find  *_*",404));
+   })
+
+//-------> custom error handler for any type for error
+
+   app.use((err,req,res,next)=>{
+    
+    res.render('error',{err});
    })
 
  
@@ -117,7 +125,7 @@ db.once("open",()=>{
     console.log("database connected");
 });
 
-const port = process.env.PORT;
+const port = process.env.PORT||3000;
 app.listen(3000 ,()=>
 {
     console.log(`listing... on ${port}`);

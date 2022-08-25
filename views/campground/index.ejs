@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate.ejs') %> 
 <body>
-         <h1 class="text-center text-light">ALL THE CAMPS</h1>
+         <h1 class="text-center text-dark">ALL THE CAMPS</h1>
          <div class="text-center"><a href="/Campground/add" class="btn btn-success ">add new campground</a></div>
             <div class="row">
                 <% for(let camp of camps){ %>
@@ -8,8 +8,9 @@
                         <img src="<%= camp.img[0].url%>" class="card-img-top" alt="error">
                         <div class="card-body" >
                           <h5 class="card-title"><%= camp.title%> </h5>
-                          <h5 class="card-title text-muted"><%= camp.location%> </h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <h5 class="card-title text-warning"><%= camp.location%> </h5>
+                          <p class="card-text">Being reliable and able to build good relationships with children are two essential traits of a Camp Counselor. You also need to have knowledge around outdoor 
+                            activities, like hiking, canoeing or caving. If you’re patient, energetic but strict when needed, we’d like to meet you.</p>
                           <a href="/Campground/<%= camp.id %> " class="btn btn-primary">more details</a>
                         </div>
                       </div>

@@ -1,20 +1,20 @@
-<% if(success.length) { %> 
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success %> 
+<% if(success &&  success.length) { %> 
+    <div class="alert alert-success alert-dismissible fade show text-center " role="alert">
+        <h3><%=success %></h3> 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    <% } %> 
+ <% } %> 
 
-    <% if(danger.length) { %> 
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <%=danger %> 
+    <% if(danger && danger.length) { %> 
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+           <h3> <%=danger %> </h3>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <% } %> 
 
-    <% if(warning.length) { %> 
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <%=warning %> 
+    <% if(warning && warning.length) { %> 
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+           <h3> <%=warning %></h3> 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <% } %> 

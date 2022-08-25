@@ -1,16 +1,17 @@
 <% layout('layouts/boilerplate.ejs') %> 
 <body>
    <div class="row">
-      <h1 class="text-center text-uppercase font-italic text-light">Add new campground</h1>
-      <div class="col-6 offset-3 " style="background-color: #1A4341;">
+      <h1 class="text-center text-uppercase font-italic text-dark">Add new campground</h1>
+      <div class="col-6 offset-3 " style="background-color:#1A4341;">
+         <img src="/images/add_form.jpg" alt="error" height="40%" width="100%">
          <form action="/Campground" method="POST" class="form-group needs-validation shadow-lg" novalidate enctype="multipart/form-data">
             <div class="my-1">
-               <label for="title"class="text-muted">Title</label>
+               <label for="title"class="text-light">Title</label>
                <input type="text" name="title" id="title" class="form-control" required>
             </div>
             <div class="my-1">
    
-               <label for="location" class="text-muted" >Location</label>
+               <label for="location" class="text-light" >Location</label>
                <input type="text" name="location" id="location" class="form-control" required>
             </div>
             <div class="my-1">
@@ -20,7 +21,7 @@
                <input type="text" name="img" id="img" class="form-control" required> -->
             </div>
             <div class="my-1">
-               <label for="price" class="text-muted">Price</label>
+               <label for="price" class="text-light">Price</label>
                <div class="input-group mb-3">
                   <span class="input-group-text">Rupees</span>
                   <input type="text" id="price" name="price" class="form-control" required>

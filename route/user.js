@@ -21,7 +21,7 @@ Router.post('/register',wrapAsync(async (req,res)=>
                 if(err){
                     return next(err);
                 }
-                req.flash('success','seccessfully registor !!!!');
+                req.flash('success',`Welcome to Yours Camp   :)`);
                 res.redirect('/Campground');
             })
      }
@@ -33,22 +33,24 @@ Router.post('/register',wrapAsync(async (req,res)=>
 
 Router.get('/logout',(req,res)=>
 {
-    req.logout(()=>
-    {
-    });
-    req.flash('success','logout');
+    req.logout(()=>{});
+    req.flash('warning',` Your are logout`);
     res.redirect('/Campground');
 })
 
 Router.get('/login',(req,res)=>
 {
-    res.render('user/login-form');
+    let obj="Yours_Camp";
+    let code="success"
+    res.render('user/login-form',{obj,code});
 })
 
-Router.post('/login',passport.authenticate('local',{failureFlash:true,failureRedirect:'login'}),(req,res)=>
+// || '/Campground';
+Router.post('/login',passport.authenticate('local',{failureFlash:true, failureRedirect:'/login'}),(req,res)=>
 {
-    req.flash('success','welcome :)');
-    const url = req.session.path || '/Campground';
+    const url = req.session.backTo || '/Campground';
+    console.log("from post " ,req.session.backTo)
+    req.flash('success','Welcome back :)');
     res.redirect(url);
 })
 
