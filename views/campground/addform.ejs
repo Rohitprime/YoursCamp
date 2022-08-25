@@ -1,38 +1,45 @@
 <% layout('layouts/boilerplate.ejs') %> 
 <body>
-   <div class="row">
-      <h1 class="text-center text-uppercase font-italic text-dark">Add new campground</h1>
-      <div class="col-6 offset-3 " style="background-color:#1A4341;">
-         <img src="/images/add_form.jpg" alt="error" height="40%" width="100%">
-         <form action="/Campground" method="POST" class="form-group needs-validation shadow-lg" novalidate enctype="multipart/form-data">
-            <div class="my-1">
-               <label for="title"class="text-light">Title</label>
-               <input type="text" name="title" id="title" class="form-control" required>
+   <div class="card" style="background-color: #ceedf2; border: #ceedf2;">
+      <div class="card-body">
+         <div class="row">
+            <h1 class="text-center text-uppercase font-italic text-dark">Add new campground</h1>
+            <div class="col-sm-6 offset-sm-3 rounded-top" style="background-color:#1A4341;">
+              <img class="card-img-top  my-1" src="/images/add_form.jpg" alt="error">
             </div>
-            <div class="my-1">
-   
-               <label for="location" class="text-light" >Location</label>
-               <input type="text" name="location" id="location" class="form-control" required>
+            <div class="col-sm-6 offset-sm-3 rounded-bottom " style="background-color:#1A4341;">
+               <form action="/Campground" method="POST" class="form-group needs-validation shadow-lg" novalidate enctype="multipart/form-data">
+                  <div class="my-1">
+                     <label for="title"class="text-light">Title</label>
+                     <input type="text" name="title" id="title" class="form-control" required>
+                  </div>
+                  <div class="my-1">
+         
+                     <label for="location" class="text-light" >Location</label>
+                     <input type="text" name="location" id="location" class="form-control" required>
+                  </div>
+                  <div class="my-1">
+                     <label for="file"></label>
+                     <input type="file" class="form-control" id="file" name="image" multiple>
+                     <!-- <label for="img" class="text-muted" >Image Url</label>
+                     <input type="text" name="img" id="img" class="form-control" required> -->
+                  </div>
+                  <div class="my-1">
+                     <label for="price" class="text-light">Price</label>
+                     <div class="input-group mb-3">
+                        <span class="input-group-text">Rupees</span>
+                        <input type="text" id="price" name="price" class="form-control" required>
+                        <span class="input-group-text">.00</span>
+                      </div>
+                  </div>
+                 
+                  <div class="text-center">
+                     <button class="btn btn-success my-3 px-4">submit</button>
+                  </div>
+               </form>
             </div>
-            <div class="my-1">
-               <label for="file"></label>
-               <input type="file" class="form-control" id="file" name="image" multiple>
-               <!-- <label for="img" class="text-muted" >Image Url</label>
-               <input type="text" name="img" id="img" class="form-control" required> -->
-            </div>
-            <div class="my-1">
-               <label for="price" class="text-light">Price</label>
-               <div class="input-group mb-3">
-                  <span class="input-group-text">Rupees</span>
-                  <input type="text" id="price" name="price" class="form-control" required>
-                  <span class="input-group-text">.00</span>
-                </div>
-            </div>
-           
-            <div class="text-center">
-               <button class="btn btn-success my-3 px-4">submit</button>
-            </div>
-         </form>
+         </div>
       </div>
-   </div>
+    </div>
+  
 </body>

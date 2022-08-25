@@ -21,7 +21,6 @@ const campgroundSchema = new schema(
                 fileName:String,
               }
         ],
-        discription:String,
         author:{
             type:schema.Types.ObjectId,
             ref:'User'

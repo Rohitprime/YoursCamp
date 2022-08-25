@@ -40,7 +40,7 @@ Router.get('/logout',(req,res)=>
 
 Router.get('/login',(req,res)=>
 {
-    let obj="Yours_Camp";
+    let obj="YoursCamp";
     let code="success"
     res.render('user/login-form',{obj,code});
 })

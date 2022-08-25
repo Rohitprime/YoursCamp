@@ -4,8 +4,7 @@ module.exports.isLoggedin = (req,res,next)=>
     if(!req.isAuthenticated())
      {
         req.session.backTo = req.originalUrl;
-       console.log('backto', req.session.backTo ) ;
-        let obj ='You must login first';
+        let obj ='You must login or register first';
         let code = "danger"
         res.render('user/login-form',{obj,code});
     }
