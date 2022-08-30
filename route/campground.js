@@ -25,6 +25,22 @@ const middle = (req,res,next)=>
  }
 }
 
+//  to find a particular
+
+router.post('/find',wrapAsync(async(req,res,next)=>{
+   try{
+       const tit = req.body.query;
+       const campground = await Campground.find({title:tit});
+        res.redirect(`/campground/${campground[0].id}`);  
+
+   }
+   catch(err){
+    req.flash('warning','Sorry there is no Campground added by this name yet!!');
+    res.redirect('/Campground');
+   }
+
+}))
+
 
 
         //   to display all campgrounds 

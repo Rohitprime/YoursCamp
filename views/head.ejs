@@ -4,7 +4,8 @@
        <meta http-equiv="X-UA-Compatible" content="IE=edge">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-       <title>YoursCamp</title>
+      <link rel="stylesheet" href="car.css">
+    <title>YoursCamp</title>
        <style>
               body{
                      height:100vh;
@@ -17,18 +18,61 @@
                      /* background-color: #0B2429; */
               }
        .ro{
-              margin-top:20%;
+              margin-top:10%;
        }
        </style>
 </head>
-<div class="fixed-top">
+<!-- <div class="fixed-top">
        <%- include('./partials/navbar') %> 
- </div>
+ </div> -->
 <body>
        <div class="row">
               <div class="ro">
               <h1 class="text-light text-center">YoursCamp</h1>
               <p class="text-light text-center">where your reviews matters..</p>
+              <div class="col-sm-6 offset-sm-3">
+                     <form  action="/Campground/find" method="POSt"  class=" d-flex shadow">
+                       <input type="text" placeholder="SEARCH CAMPGRONDS" name="query" id="input" class=" col-md-9 col-9  my-3 rounded">
+                       <button class="col-md-3 col-3  my-3 rounded btn btn-success"><span class="fs-1 ">&#128269;</span></button>
+                       </form>
+               </div>
+               <div class="text-center my-2">
+                     <a href="/Campground " class="btn btn-primary">Get Started</a>
+                   </div>
+              </div>
+              <div class="my-5">
+                     <div class="car">
+                            <div class="car__top"></div>
+                            <div class="car__body">
+                            <div class="car__bulb"></div>
+                            <div class="car__bulb car__bulb--back"></div>
+                            <div class="car__center"></div>
+                            </div>
+                            <div class="car__wheels">
+                            <div class="car__wheel car__wheel--1">
+                            <div class="wheel__circle"></div>
+                            <div class="wheel__rect wheel__rect--1"></div>
+                            <div class="wheel__rect wheel__rect--2"></div>
+                            <div class="wheel__rect wheel__rect--3"></div>
+                            <div class="wheel__rect wheel__rect--4"></div>
+                            <div class="wheel__rect wheel__rect--5"></div>
+                            <div class="wheel__rect wheel__rect--6"></div>
+                            </div>
+                            <div class="car__wheel car__wheel--2">
+                            <div class="wheel__circle"></div>
+                            <div class="wheel__rect wheel__rect--1"></div>
+                            <div class="wheel__rect wheel__rect--2"></div>
+                            <div class="wheel__rect wheel__rect--3"></div>
+                            <div class="wheel__rect wheel__rect--4"></div>
+                            <div class="wheel__rect wheel__rect--5"></div>
+                            <div class="wheel__rect wheel__rect--6"></div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="cloud" style="--delay:1s;--top:10vmin"></div>
+                            <div class="cloud" style="--delay:3s;--top:20vmin"></div>
+                            <div class="cloud" style="--delay:7s;--top:10vmin"></div>
+
               </div>
        </div>
        <div class="bg bg-dark fixed-bottom text-light"> <h1></h1></div>

@@ -9,7 +9,16 @@
             <a class="nav-link text-warning  " href="/Campground">All-Campground</a>
           <a class="nav-link text-warning " href="/Campground/add">Add-Campground</a>
         </div>
-        <div class="navbar-nav col-lg-8 d-flex justify-content-end">
+        <div class="col-sm-4">
+          <div class=" ">
+            <form  action="/Campground/find" method="POSt"  class=" d-flex shadow">
+              <input type="text" placeholder="SEARCH CAMPGRONDS" name="query" id="input" class=" col-md-9 col-9 rounded">
+              <button class="col-md-3 col-3  rounded btn btn-success"><span class="fs-1 ">&#128269;</span></button>
+              </form>
+      </div>
+        </div>
+        </form>
+        <div class="navbar-nav col-lg-4 d-flex justify-content-end">
           <% if(!user) {%>  
           <a class="nav-link text-warning " href="/register">Register</a>
           <a class="nav-link text-warning" href="/login">Login</a>
