@@ -1,9 +1,11 @@
 <% layout('layouts/boilerplate.ejs') %> 
 <div class="row">
-    <div class="col-6 offset-3">
+    <div class="col-sm-6 offset-sm-3">
         <div class="alert alert-danger " role="alert">
             <!-- <h3 class="alert-heading text-center"><%=err.status %> </h3> -->
-            <h4 class="alert-heading text-center"><%= err.message %> </h4>
+            <h4 class="alert-heading text-center text-capitalize"><%= err.message %>  </h4>
+        <img src="https://img.freepik.com/free-vector/404-error-with-person-looking-concept-illustration_114360-7912.jpg?w=996&t=st=1662155629~exp=1662156229~hmac=5d939a9e49902e232231e224bfd9f30eb24231dc6f175ca680e771af333f3a50" alt="" height="50%" width="100%">
+   
             <!-- <p class=" badge text-wrap text-danger" style="width:6rem;"></p><%= err.stack %> </p> -->
         </div>    
     </div>

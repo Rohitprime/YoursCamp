@@ -9,7 +9,7 @@
        <style>
               body{
                      height:100vh;
-                     background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.6)), url('/images/background.jpg');
+                     background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.6)), url('https://images.unsplash.com/photo-1464547323744-4edd0cd0c746?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
                      background-repeat: no-repeat;
                      background-position: center;
                      background-size: cover;
@@ -28,16 +28,24 @@
 <body>
        <div class="row">
               <div class="ro">
-              <h1 class="text-light text-center">YoursCamp</h1>
-              <p class="text-light text-center">where your reviews matters..</p>
-              <div class="col-sm-6 offset-sm-3">
+              <h1 class="text-warning text-center mt-5 fw-bolder fs-1">YoursCamp</h1>
+              <h5 class="text-light text-center fst-italic">where your reviews matters..</h5>
+              <div class="col-sm-6 offset-sm-3 my-1">
                      <form  action="/Campground/find" method="POSt"  class=" d-flex shadow">
                        <input type="text" placeholder="SEARCH CAMPGRONDS" name="query" id="input" class=" col-md-9 col-9  my-3 rounded">
                        <button class="col-md-3 col-3  my-3 rounded btn btn-success"><span class="fs-1 ">&#128269;</span></button>
                        </form>
                </div>
-               <div class="text-center my-2">
+               <div class="text-center my-4">
                      <a href="/Campground " class="btn btn-primary">Get Started</a>
+                     <% if(!user) {%>  
+                           <a class=" btn btn-primary" href="/register">Register</a>
+                           <a class=" btn btn-primary" href="/login">Login</a>
+                            <% } else { %> 
+                              <% console.log(user) %> 
+                              <button class="btn btn-danger px-3 rounded-2 text-light text-capitalize"><%=user.username %> </button>
+                              <a class=" btn btn-primary " href="/logout">Logout</a>
+                            <% } %>
                    </div>
               </div>
               <div class="my-5">
