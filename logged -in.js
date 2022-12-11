@@ -1,5 +1,6 @@
 const Campground= require('./models/campground');
-module.exports.isLoggedin = (req,res,next)=>
+const User = require('./models/user');
+module.exports.isLoggedin = async (req,res,next)=>
 {   
     if(!req.isAuthenticated())
      {
@@ -9,7 +10,6 @@ module.exports.isLoggedin = (req,res,next)=>
         res.render('user/login-form',{obj,code});
     }
     else{
-
       next();
     }
 }
@@ -18,7 +18,7 @@ module.exports.isAuthor = async (req,res,next)=>
 {
     const {id} = req.params;
                 const camp = await Campground.findById(id).populate('author');
-                console.log(req.user.id,camp.author.id);
+                // console.log(req.user.id,camp.author.id);
                 if(camp.author.id !== req.user.id)
                 {
                     req.flash('danger','you are not allowed to do this')

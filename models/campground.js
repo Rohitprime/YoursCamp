@@ -30,6 +30,11 @@ const campgroundSchema = new schema(
                 type:schema.Types.ObjectId,
                 ref:'Review'
             }
+        ],
+        reviewers:[
+            {
+                type:String
+            }
         ]
         
     }

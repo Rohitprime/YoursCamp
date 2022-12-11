@@ -23,7 +23,12 @@
           <a class="nav-link text-warning " href="/register">Register</a>
           <a class="nav-link text-warning" href="/login">Login</a>
           <% } else { %> 
-            <% console.log(user) %> 
+            <% if(user.role=="admin") {%>
+              <a class="nav-link text-warning bg bg-danger px-3 rounded-2 text-light my-1  mx-1  " href="/adminPage">AdminPage</a>
+              <% } %> 
+            <% if(user.role=="subAdmin") {%>
+              <a class="nav-link text-warning bg bg-danger px-3 rounded-2 text-light my-1 mx-1 " href="/subAdminPage">subAdminPage</a>
+              <% } %> 
             <button class="bg bg-danger px-3 rounded-2 text-light my-1"><%=user.username %> </button>
           <a class="nav-link text-warning " href="/logout">Logout</a>
           <% } %> 
