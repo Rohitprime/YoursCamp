@@ -17,7 +17,7 @@ module.exports.addCampground = (req,res)=>
       res.render('campground/addform.ejs');
     }
     else{
-        req.flash('danger',"You Don't Have Excess --- Contect Admin");
+        req.flash('danger',"You Don't Have Access -- So.. Contact Admin");
         res.redirect('/Campground');
     }
 }
