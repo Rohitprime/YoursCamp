@@ -1,6 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const User = require('../models/user');
+const Campground = require('../models/campground');
 const wrapAsync = require('../utility/catch');
 const passport =require('passport');
 
@@ -45,14 +46,100 @@ Router.get('/login',(req,res)=>
     res.render('user/login-form',{obj,code});
 })
 
-// || '/Campground';
-Router.post('/login',passport.authenticate('local',{failureFlash:true, failureRedirect:'/login'}),(req,res)=>
+Router.post('/login',passport.authenticate('local',{ failureRedirect:'/login', failureFlash: true}),async (req,res)=>
 {
     const url = req.session.backTo || '/Campground';
-    console.log("from post " ,req.session.backTo)
     req.flash('success','Welcome back :)');
-    res.redirect(url);
+
+    if(req.user.role=="admin"){    
+        res.redirect('/adminPage');
+    }
+    else if(req.user.role=="subAdmin"){
+         res.redirect('/subAdminPage');
+    }
+    else{
+        res.redirect(url);
+    }
 })
+
+
+///// -----> Admin route
+
+Router.get('/adminPage',async (req,res)=>{
+    if(!req.user){
+        res.redirect('/login')
+    }
+   else if(req.user.role=="admin"){
+        const users = await User.find({});
+
+    
+      res.render('admin/admin',{users});
+
+  }
+  else {
+    req.flash('danger',"You Are Not An Admin");
+    res.redirect("/Campground")
+  }
+})
+
+Router.post('/changeRole/:id',async (req,res)=>{
+   const id = req.params.id;
+   const role = req.body.role;
+   const user = await User.findById(id);
+ 
+   user.role = role;
+   await user.save();
+ 
+   req.flash('success',`Role Of User -- ${user.username} -- Has Been Changed To ${role}`);
+
+   res.redirect("/adminPage");
+
+})
+
+//  ----> subAdmin route
+
+
+Router.get('/subAdminPage',async (req,res)=>{
+    if(!req.user){
+        res.redirect('/login')
+    }
+   else if(req.user.role=="subAdmin"){
+        
+     const camps = await Campground.find({}).populate('author') 
+     .populate({path:'reviews',
+            populate:{
+            path:'author'
+        }});
+     let camp = null;
+       for(let campin of camps){
+        if(campin.author.id==req.user.id){
+          camp = campin;
+        }
+       }
+      res.render('admin/subAdmin',{camp});
+  }
+  else {
+    req.flash('danger',"You Are Not A SubAdmin");
+    res.redirect("/Campground")
+  }
+
+})
+
+Router.post('/addReviewers/:id',async (req,res)=>
+{
+    const {id} = req.params;
+  
+
+        const camp = await Campground.findById(id);  
+    
+        camp.reviewers.push(req.body.email);
+        await camp.save();
+        req.flash('success','New Reviewer Has Added')
+        res.redirect('/subAdminPage');
+
+    })
+
+
 
 
 module.exports = Router;

@@ -1,17 +1,26 @@
 <% layout('layouts/boilerplate.ejs') %> 
 <body>
          <h1 class="text-center text-dark">ALL THE CAMPS</h1>
-         <div class="text-center"><a href="/Campground/add" class="btn btn-success ">add new campground</a></div>
+         <div class="text-center row"><a href="/Campground/add" class="btn btn-success col-sm-2 offset-sm-5 col-6 offset-3">add new campground</a>
+          <!-- <div class="col-sm-6 offset-sm-3">
+                <form  action="/Campground/find" method="POSt"  class=" d-flex shadow">
+                  <input type="text" placeholder="SEARCH CAMPGRONDS" name="query" id="input" class=" col-md-9 col-9  my-3 rounded">
+                  <button class="col-md-3 col-3  my-3 rounded btn btn-success"><span class="fs-1 ">&#128269;</span></button>
+                  </form>
+          </div> -->
+          </div>
             <div class="row">
                 <% for(let camp of camps){ %>
                     <div class="card col-md-5 mx-md-4 col-xl-3 mx-xl-5 my-3  border text-light shadow-lg" style="background-color: #1A4341;">
-                        <img src="<%= camp.img[0].url%>" class="card-img-top my-1" alt="error">
+                        <img src="<%= camp.img[0].url%>" class="card-img-top my-1" alt="error"><hr>
                         <div class="card-body" >
                           <h5 class="card-title"><%= camp.title%> </h5>
                           <h5 class="card-title text-warning"><%= camp.location%> </h5>
                           <p class="card-text">Being reliable and able to build good relationships with children are two essential traits of a Camp Counselor. You also need to have knowledge around outdoor 
                             activities, like hiking, canoeing or caving. If you’re patient, energetic but strict when needed, we’d like to meet you.</p>
-                          <a href="/Campground/<%= camp.id %> " class="btn btn-primary">more details</a>
+                            <div class="text-center">
+                              <a href="/Campground/<%= camp.id %> " class="btn btn-primary">more details</a>
+                            </div>
                         </div>
                       </div>
                <% } %> 

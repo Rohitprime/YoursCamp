@@ -13,15 +13,21 @@
             </div>
             <div class="col-sm-6 offset-sm-3 rounded-bottom shadow-lg " style="background-color: #1A4341;">
             <form action="/login" method="Post" class="form-group needs-validation text-dark" novalidate style="background-color: #1A4341;">
+
                <div class="my-1">
                   <label for="title"class=" text-light">Name</label>
                   <input type="text" name="username" id="title" class="form-control text-dark" required>
                </div>
                <div class="my-1">
-      
+                  <label for="title"class=" text-light">Email</label>
+                  <input type="email" name="email" id="title" class="form-control text-dark" required>
+               </div>
+
+               <div class="my-1">
                   <label for="location" class="text-light" >Password</label>
                   <input type="password" name="password" id="location" class="form-control" required>
                </div>
+
                <div class="text-center">
                   <button class="btn btn-success my-3 px-4">submit</button>
                </div>
