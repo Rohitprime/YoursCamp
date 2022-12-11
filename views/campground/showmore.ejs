@@ -27,7 +27,7 @@
               <h4 class="card-title">Title: <%= camp.title %> </h4><hr>
               <h5 class="card-title">Location: <%= camp.location%></h5><hr>
               <h5 class="card-title">Price: <%= camp.price %></h5><hr>
-              <h5>Submited by-<%= camp.author.username %> </h5>
+              <h5>Created by-<%= camp.author.username %> </h5>
              <% if(user && user.role=='subAdmin' &&  user.id === camp.author.id) { %> 
               <div class="mt-3 mb-0 d-flex bg-secondary">
                <div class=" bd-highlight  mx-sm-3 card-text">
@@ -91,7 +91,7 @@
                           Rated: <%=review.rating %>  stars
                         </p>
                         <p class="card-text">Review :- <%= review.body %></p>
-                        <% if(user  && user.id === review.author.id || user.role=='admin') {%> 
+                        <% if((user  && user.id === review.author.id) ||(user &&  user.role=='admin')) {%> 
                         <form action="/Campground/<%=camp.id %>/review/<%=review.id%>?_method=delete" method="post">
                            <button class="btn btn-danger" >Delete</button> 
                         </form>  

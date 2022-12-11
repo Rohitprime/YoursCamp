@@ -6,7 +6,7 @@
         <% for(let user of users) { %>
            <div class="card my-1">
               <div class="card-body">
-                 <h2 class="card-title text-info "><%= user.username %>.cap</h2>
+                 <h2 class="card-title text-info "><%= user.username %></h2>
                  <form action="/changeRole/<%=user.id%>" method="post">
 
                   <fieldset>
