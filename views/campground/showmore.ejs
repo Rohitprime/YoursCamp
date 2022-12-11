@@ -30,7 +30,7 @@
               <h5 class="card-title">Created by-<%= camp.author.username %> </h5><hr>
              
               <h5 class="card-title">Contact here --- <a href="mailto:rohitprime0@gmail.com" class="py-1 text-center "><%= camp.author.email %></a> </h5>
-             <% if(user && user.role=='subAdmin' &&  user.id === camp.author.id) { %> 
+             <% if((user && user.role=='subAdmin' &&  user.id === camp.author.id)||(user &&  user.role=='admin')) { %> 
               <div class="mt-3 mb-0 d-flex bg-secondary">
                <div class=" bd-highlight  mx-sm-3 card-text">
                   <a href="/Campground/<%=camp.id%>/edit" class="btn btn-primary">Update</a>
